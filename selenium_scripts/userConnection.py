@@ -38,7 +38,7 @@ def test_connection(USERNAME,PASSWORD,pass_or_fail="pass"):
         login_button.click()
     
         # Attendre que la page se charge
-        time.sleep(2)
+        #time.sleep(2)
     
         # Vérifier la connexion réussie
         current_url = driver.current_url
@@ -64,7 +64,7 @@ def test_connection(USERNAME,PASSWORD,pass_or_fail="pass"):
     
     finally:
         # Attendre un moment pour voir le résultat
-        time.sleep(3)
+        #time.sleep(3)
     
         # Fermer le navigateur
         driver.quit()
