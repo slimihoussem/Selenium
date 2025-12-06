@@ -2,11 +2,11 @@ from userConnection import test_connection
 import json
 import time 
 
-name_file = "Selenium/selenium_scripts/testCaseConnection.json"
+file_name = "Selenium/selenium_scripts/testCaseConnection.json"
 
 try:
     start_global_time = time.perf_counter()
-    with open(name_file, mode="r", encoding="utf-8") as file:
+    with open(file_name, mode="r", encoding="utf-8") as file:
         lecteur = json.load(file)
     for data in lecteur["test_cases"]:
         
@@ -19,7 +19,7 @@ try:
     print("\n")
     print("*"*20)
     end_global_time  = time.perf_counter()
-    print(f"time execution if all cases: {round(end_global_time-start_global_time,2)}s")
+    print(f"time execution if all cases: {round(end_global_time-start_global_time,2)}s\n")
 
 
 except Exception as err:

@@ -107,8 +107,13 @@
       "username": "standard_user1",
       "password": "secret_sauce3",
       "expected_result": "fail"
-    }
-    
+    },
+        {
+      "description": "Identifiants invalides - utilisateur empty UC2",
+      "username": "performance_glitch_user",
+      "password": "secret_sauce3",
+      "expected_result": "fail"
+    }    
   ],
   "metadata": {
     "test_suite_name": "User Authentication Test Suite",

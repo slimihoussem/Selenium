@@ -1,0 +1,21 @@
+{
+  "test_cases": [
+    {
+      "description": "Identifiants invalides - utilisateur empty UC2",
+      "username": "performance_glitch_user",
+      "password": "secret_sauce",
+      "expected_result": "fail"
+    }
+  ],
+  "metadata": {
+    "test_suite_name": "User Authentication Test Suite",
+    "version": "1.0",
+    "created_date": "2024-01-15",
+    "description": "Jeux de tests pour la fonction check_connection_user()",
+    "notes": [
+      "Les mots de passe sont fictifs et pour tests uniquement",
+      "Les cas d'injection SQL testent la robustesse de l'authentification",
+      "expected_result: true = authentification réussie, false = échec"
+    ]
+  }
+}
