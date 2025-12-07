@@ -15,16 +15,7 @@ from pathlib import Path
 #USERNAME = "standard_user"
 #PASSWORD = "secret_sauce"
 
-
-def test_connection(USERNAME,PASSWORD,pass_or_fail="pass"):
-
-    print(f"user           : '{USERNAME}', \npassword       : '{PASSWORD}', \nexpected result: '{pass_or_fail}'")
-    expected_status = pass_or_fail
-    status_tested = "pass_or_fail"
-
-    # Créer une instance du navigateur (Chrome)
-    #driver = webdriver.Chrome()  
-
+def open_chrome():
     # creer une instance du navigateur avec chrome-win64 and chromedriver-win64
     chrome_binary = Path.home() / "Downloads" / "chrome-win64" / "chrome-win64" / "chrome.exe"
     driver_binary = Path.home() / "Downloads" / "chromedriver-win64" / "chromedriver-win64" / "chromedriver.exe"
@@ -32,7 +23,22 @@ def test_connection(USERNAME,PASSWORD,pass_or_fail="pass"):
     chrome_options.binary_location = str(chrome_binary)
     service = Service(executable_path=str(driver_binary))
     driver = webdriver.Chrome(service=service, options=chrome_options)
+    return driver
 
+def close_chrome(driver):
+    #fermer chrome
+    # Fermer le navigateur
+    driver.quit()
+    
+
+def test_connection(USERNAME,PASSWORD,driver,pass_or_fail="pass",):
+
+    print(f"user           : '{USERNAME}', \npassword       : '{PASSWORD}', \nexpected result: '{pass_or_fail}'")
+    expected_status = pass_or_fail
+    status_tested = "pass_or_fail"
+
+    # Créer une instance du navigateur (Chrome)
+    #driver = webdriver.Chrome()  
 
     try:
         # Accéder au site
@@ -92,12 +98,11 @@ def test_connection(USERNAME,PASSWORD,pass_or_fail="pass"):
     except Exception as e:
         print("⛔ Error: ", e)
 
-    finally:
+    #finally:
         # Attendre un moment pour voir le résultat
         #time.sleep(3)
     
-        # Fermer le navigateur
-        driver.quit()
+
         #print("Navigateur fermé")
 
     if(expected_status==status_tested):
@@ -108,9 +113,10 @@ def test_connection(USERNAME,PASSWORD,pass_or_fail="pass"):
         return False
 
 
-
 # ------ test function ------  param => user, pass, status(fail or pass)
 if __name__ == "__main__":
-    test_connection("performance_glitch_user","secret_sauce","pass")
-    test_connection("","")
-    test_connection("standard_user ","secret_sauce","fail")
+    driver = open_chrome()
+    #test_connection("performance_glitch_user","secret_sauce","pass")
+    #test_connection("","")
+    test_connection("standard_user","secret_sauce",driver,"fail")
+    #close_chrome(driver)

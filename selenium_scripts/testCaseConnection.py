@@ -1,9 +1,10 @@
-from userConnection import test_connection
+from userConnection import test_connection, open_chrome, close_chrome
 import json
 import time 
 
-file_name = "Selenium/selenium_scripts/testCaseConnection.json"
+driver = file_name = "Selenium/selenium_scripts/testCaseConnection.json"
 
+open_chrome
 try:
     start_global_time = time.perf_counter()
     with open(file_name, mode="r", encoding="utf-8") as file:
@@ -12,7 +13,7 @@ try:
         
         print("-"*20)
         start_time = time.perf_counter()
-        test_connection(data["username"],data["password"],data["expected_result"])
+        test_connection(data["username"],data["password"],driver,data["expected_result"])
         end_time = time.perf_counter()
         print(f"time execution of this case: {round(end_time-start_time,2)}s\n")
 
@@ -24,3 +25,5 @@ try:
 
 except Exception as err:
     print("Load fail: ",err)
+
+close_chrome(driver)
