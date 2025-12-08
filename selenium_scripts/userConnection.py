@@ -20,6 +20,15 @@ def open_chrome():
     chrome_binary = Path.home() / "Downloads" / "chrome-win64" / "chrome-win64" / "chrome.exe"
     driver_binary = Path.home() / "Downloads" / "chromedriver-win64" / "chromedriver-win64" / "chromedriver.exe"
     chrome_options = Options()
+    prefs = {
+    # Désactiver le gestionnaire de mots de passe
+    "profile.password_manager_enabled": False,
+    "credentials_enable_service": False
+    }
+    chrome_options.add_experimental_option("prefs",prefs)
+    chrome_options.add_argument("--incognito")
+    chrome_options.add_argument("--disable-extensions")
+    chrome_options.add_argument("--no-default-browser-check")
     chrome_options.binary_location = str(chrome_binary)
     service = Service(executable_path=str(driver_binary))
     driver = webdriver.Chrome(service=service, options=chrome_options)
@@ -116,7 +125,7 @@ def test_connection(USERNAME,PASSWORD,driver,pass_or_fail="pass",):
 # ------ test function ------  param => user, pass, status(fail or pass)
 if __name__ == "__main__":
     driver = open_chrome()
-    #test_connection("performance_glitch_user","secret_sauce","pass")
-    #test_connection("","")
+    test_connection("performance_glitch_user","secret_sauce",driver,"pass")
+    test_connection("","",driver)
     test_connection("standard_user","secret_sauce",driver,"fail")
     #close_chrome(driver)

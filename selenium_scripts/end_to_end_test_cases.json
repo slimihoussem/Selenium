@@ -1,0 +1,36 @@
+{
+  "test_cases": [
+    {
+      "description": "Test end-to-end d'achat de plusieurs produits",
+      "username": "standard_user",
+      "password": "secret_sauce",
+      "products_to_buy": [
+        "Sauce Labs Backpack",
+        "Sauce Labs Bolt T-Shirt",
+        "Sauce Labs Bike Light"
+      ],
+      "checkout_info": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "postal_code": "12345"
+      },
+      "expected_order_message": "Thank you for your order",
+      "expected_return_url_contains": "inventory"
+    },
+    {
+      "description": "Test d'achat d'un seul produit",
+      "username": "standard_user",
+      "password": "secret_sauce",
+      "products_to_buy": [
+        "Sauce Labs Backpack"
+      ],
+      "checkout_info": {
+        "first_name": "Alice",
+        "last_name": "Smith",
+        "postal_code": "54321"
+      },
+      "expected_order_message": "Thank you for your order",
+      "expected_return_url_contains": "inventory"
+    }
+  ]
+}
